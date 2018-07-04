@@ -43,8 +43,7 @@ def convert(input):
     output = output.replace(u'\u106B', u'\u100A')
     #  nya
 
-    output = output.replace(u'\u103D', u'\u103E')
-    output = output.replace(u'\u1087', u'\u103E')
+    output = re.sub(u'[\u103D\u1087]', u'\u103E', output)
     #hahtoe
 
     output = output.replace(u'\u103C', u'\u103D')
@@ -61,6 +60,7 @@ def convert(input):
     # yayit
 
     output = output.replace(u'\u103A', u'\u103B')
+    output = output.replace(u'\u107D', u'\u103B')
     #yapin
 
     output = output.replace(u'\u1039', u'\u103A')
@@ -110,8 +110,44 @@ def convert(input):
     output = re.sub(u'[\u107B\u1093]', u'\u1039\u1018', output) #ba_kone
     output = re.sub(u'\u107C', u'\u1039\u1019', output) #ma
     output = re.sub(u'\u1085', u'\u1039\u101C', output) #hla
+    #passin
+
+    output = re.sub(u'\u105A', u'\u102B' + u'\u103A', output) # yaechar_shaehtoe
+
+    output = re.sub(u'\u108A', u'\u103D' + u'\u103E', output) #wa_hatoe
+
+    output = re.sub(u'\u1088', u'\u103E' + u'\u103F', output) #hatoe_tachaunge
+
+    output = re.sub(u'\u1089', u'\u103E' + u'\u1030', output) #hatoe_nachaunge
+
+    output = re.sub(u'\u103E\u103B', u'\u103B' + u'\u103E', output) #ypin_hatoe
+
+    output = re.sub(u'\u108B', u'\u102D' + u'\u1004' + u'\u1039' + u'\u103A', output) #ngathat_lgt
+
+    output = re.sub(u'\u108C', u'\u1004' + u'\u100A' + u'\u1039' + u'\u102E', output) #ngathat_lgt_sankhat
+
+    output = re.sub(u'\u108D', u'\u1004' + u'\u103A' + u'\u1039' + u'\u1036', output) #ngathat_tttin
+
+    output = re.sub(u'\u108E', u'\u102D' + u'\u1036', output)  # lonegt_tttin
+
+    output = re.sub(u'\u1064', u'\u1004\u103A\u1039', output) # up_ngathat
+
+    output = re.sub(u'u\u104E', u'\u104E\u1004\u103A\u1038', output) #ll_kaung
+
+    ##pattern
+
+    output = re.sub(u'(\u103C)([\u1000-\u1021])(\u1039[\u1000-\u1021])?', r'\2\3\1', output) #yayit
+
+    output = re.sub(u'([\u103B\u103C])(\u103D)(\u103E)', r'\1\2\3', output) #pin_yit_swae_htoe
+
+    output = re.sub(u'([\u103B\u103C])(\u103E)', r'\1\2', output) #pin_yit_htoe
+
+    output = re.sub(u'([\u103B\u103C])(\u103D)', r"\\1\\2", output) #pin_yit_swae
+
+    output = re.sub(u'(\u1030)([\u1000-\u1021])(\u103B\u103C\u103D\u103E\u102B\u102C\u1037\u1038)', r'\1\2\3', output) #thwayhtoe
+
+    output = re.sub(u'[\u1094\u1095]', u'\u1037', output) #outkamyint
 
 
     return output
-
 
